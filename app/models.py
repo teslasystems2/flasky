@@ -110,7 +110,7 @@ class User(UserMixin, db.Model):
             data = s.loads(token, salt='random_salt', max_age=expiration)
         except:
             return False
-        if data.get('confirm') != self.id:
+        if data != self.id:
             return False
         self.confirmed = True
         db.session.add(self)
